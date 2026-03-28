@@ -1,5 +1,5 @@
-import type { ProductoRepositorio } from "@/domain/ProductoRepositorio";
-import type { Producto } from "@/domain/Producto";
+import type { ProductoRepositorio } from "@/domain/repository/ProductoRepositorio";
+import type { Producto } from "@/domain/entities/products/Producto";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

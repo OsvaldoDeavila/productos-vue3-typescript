@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
-import TarjetaProducto from "../../interfaces/components/TarjetaProducto.vue";
+import TarjetaProducto from "@/presentation/components/TarjetaProducto.vue";
 
-import { ObtenerProductos } from "@/application/ObtenerProductos";
+import { ObtenerProductos } from "@/domain/use-cases/productos/ObtenerProductos";
 import { ProductoApi } from "@/infrastructure/api/ProductApi";
 
-import Paginacion from "@/interfaces/components/Paginacion.vue";
-import Buscador from "@/interfaces/components/Buscador.vue";
-import FiltroCategoria from "@/interfaces/components/FiltroCategoria.vue";
-import EstadoVacio from "@/interfaces/components/EstadoVacio.vue";
+import Paginacion from "@/presentation/components/Paginacion.vue";
+import Buscador from "@/presentation/components/Buscador.vue";
+import FiltroCategoria from "@/presentation/components/FiltroCategoria.vue";
+import EstadoVacio from "@/presentation/components/EstadoVacio.vue";
 
 
 const productos = ref<any[]>([]);

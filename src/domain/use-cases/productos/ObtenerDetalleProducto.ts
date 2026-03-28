@@ -1,4 +1,4 @@
-import type { ProductoRepositorio } from "../domain/ProductoRepositorio";
+import type { ProductoRepositorio } from "@/domain/repository/ProductoRepositorio";
 
 export class ObtenerDetalleProducto {
     private repositorio: ProductoRepositorio;

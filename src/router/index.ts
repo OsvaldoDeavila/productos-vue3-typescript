@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 // Vistas
-import ListaProductosView from "@/interfaces/views/ListaProductosView.vue";
-import DetalleProductoView from "@/interfaces/views/DetalleProductoView.vue";
+import ListaProductosView from "@/presentation/modules/ListaProductosView.vue";
+import DetalleProductoView from "@/presentation/modules/DetalleProductoView.vue";
 
 const routes = [
     {

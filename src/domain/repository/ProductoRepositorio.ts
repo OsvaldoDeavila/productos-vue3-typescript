@@ -1,4 +1,4 @@
-import type { Producto } from "./Producto";
+import type { Producto } from "../entities/products/Producto";
 
 export interface ProductoRepositorio {
     obtenerTodos(): Promise<Producto[]>;

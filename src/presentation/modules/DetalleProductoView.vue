@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
-import { ObtenerDetalleProducto } from "@/application/ObtenerDetalleProducto";
+import { ObtenerDetalleProducto } from "@/domain/use-cases/productos/ObtenerDetalleProducto";
 import { ProductoApi } from "@/infrastructure/api/ProductApi.ts";
 
 const producto = ref<any>(null);
