@@ -66,8 +66,6 @@ const productosPaginados = computed(() => {
 
 <template>
 
-    <h1 class="text-red-500 font-bold text-3xl">¡Hola Tailwind!</h1>
-
     <div class="bg-gray-100 min-h-screen py-6">
         <div class="max-w-7xl mx-auto px-4">
 
