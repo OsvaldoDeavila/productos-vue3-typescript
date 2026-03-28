@@ -24,27 +24,27 @@ Aplicación web tipo e-commerce que permite listar, buscar, filtrar y visualizar
 
 El proyecto está basado en **Clean Architecture**, separando responsabilidades en capas:
 
-### 📌 Principios aplicados
+### Principios aplicados
 
 - Separación de responsabilidades
 - Bajo acoplamiento
 - Reutilización de lógica
 - Escalabilidad del proyecto
 
-## 🧠 Metodología
+## Metodología
 
 Se aplicó una arquitectura basada en:
 
-- 🧩 Clean Architecture
-- 🔄 Separación por capas (Domain, Infrastructure, Presentation)
-- 📦 Uso de casos de uso (Use Cases)
-- 🧾 Tipado fuerte con TypeScript
+- Clean Architecture
+- Separación por capas (Domain, Infrastructure, Presentation)
+- Uso de casos de uso (Use Cases)
+- Tipado fuerte con TypeScript
 
-## 🧪 Testing
+## Testing
 
 Se implementaron pruebas unitarias para los casos de uso utilizando Vitest, asegurando el correcto funcionamiento 
 
-## 📦 Instalación
+## Instalación
 
 Clona el proyecto:
 
