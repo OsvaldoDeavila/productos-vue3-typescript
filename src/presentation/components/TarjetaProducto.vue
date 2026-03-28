@@ -1,12 +1,24 @@
 <script setup lang="ts">
-defineProps<{
-    producto: any
-}>()
+import { useRouter } from "vue-router";
+import type { Producto } from "@/domain/entities/products/Producto";
+
+const props = defineProps<{
+    producto: Producto;
+}>();
+
+const router = useRouter();
+
+function onVerDetalles() {
+    router.push({
+        name: "detalle-producto",
+        params: { id: props.producto.id }
+    });
+}
 </script>
 
 
 <template>
-    <div class="bg-white shadow-md rounded-lg max-w-sm hover:shadow-xl transition duration-300">
+    <div class="bg-white shadow-md rounded-lg max-w-sm hover:shadow-xl transition duration-300" @click="onVerDetalles">
         <a href="#">
             <img class="rounded-t-lg p-4 h-52 object-contain w-full" :src="producto.imagen" :alt="producto.titulo" />
         </a>
@@ -27,12 +39,8 @@ defineProps<{
                     {{ producto.calificacion.tasa }}
                 </span>
             </div>
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-center">
                 <span class="text-2xl font-bold text-gray-900">${{ producto.precio }}</span>
-                <button
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
-                    Agregar
-                </button>
             </div>
         </div>
     </div>
