@@ -162,7 +162,7 @@ code {
 }
 
 #app {
-  width: 1126px;
+  /* width: 1126px; */
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -302,4 +302,8 @@ code {
     right: 0;
     border-right-color: var(--border);
   }
+}
+
+.max-w-7xl {
+  max-width: 100%;
 }

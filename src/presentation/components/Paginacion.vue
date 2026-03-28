@@ -1,7 +1,10 @@
 <script setup lang="ts">
-defineProps<{
+
+const props = defineProps<{
     paginaActual: number
     totalPaginas: number
+    porPagina: number
+    totalResultados: number
 }>()
 
 const emit = defineEmits<{
@@ -10,28 +13,44 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div class="flex justify-center mt-6 gap-2">
-        <button class="px-3 py-1 rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-            Anterior
-        </button>
-        <button class="px-3 py-1 rounded border bg-indigo-600 text-white">
-            1
-        </button>
-        <button class="px-3 py-1 rounded border border-gray-300 bg-white hover:bg-gray-50">
-            2
-        </button>
-    </div>
 
-    <div v-if="totalPaginas > 1" class="flex justify-center mt-8 gap-2">
+    <div v-if="totalPaginas > 1" class="flex flex-col md:flex-row items-center justify-between gap-4 mt-10">
 
-        <button v-for="p in totalPaginas" :key="p" @click="emit('cambiarPagina', p)" :class="[
-            'px-3 py-1 rounded border transition',
-            paginaActual === p
-                ? 'bg-indigo-600 text-white'
-                : 'bg-white hover:bg-gray-100'
-        ]">
-            {{ p }}
-        </button>
+
+        <p class="text-sm text-slate-500">
+            Mostrando
+            <span class="font-semibold text-slate-700">
+                {{ (paginaActual - 1) * porPagina + 1 }}
+            </span>
+            -
+            <span class="font-semibold text-slate-700">
+                {{ Math.min(paginaActual * porPagina, totalResultados) }}
+            </span>
+            de
+            <span class="font-semibold text-slate-700">
+                {{ totalResultados }}
+            </span>
+            resultados
+        </p>
+
+        <div class="flex items-center gap-1 bg-white border border-slate-200 rounded-xl p-1 shadow-sm">
+
+
+            <button @click="emit('cambiarPagina', paginaActual - 1)" :disabled="paginaActual === 1"
+                class="px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                ←
+            </button>
+
+            <span class="px-3 py-1.5 text-sm font-medium text-slate-700">
+                {{ paginaActual }} / {{ totalPaginas }}
+            </span>
+
+            <button @click="emit('cambiarPagina', paginaActual + 1)" :disabled="paginaActual === totalPaginas"
+                class="px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition">
+                →
+            </button>
+
+        </div>
 
     </div>
 </template>

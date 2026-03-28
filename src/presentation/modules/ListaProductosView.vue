@@ -22,6 +22,8 @@ const porPagina = 6;
 
 const UsoProductos = new ObtenerProductos(new ProductoApi());
 
+
+
 onMounted(async () => {
     try {
         productos.value = await UsoProductos.onListaProductos();
@@ -32,6 +34,7 @@ onMounted(async () => {
     }
 });
 
+const totalResultados = computed(() => productos.value.length)
 
 const categorias = computed(() => {
     const lista = productos.value.map(p => p.categoria);
@@ -66,31 +69,55 @@ const productosPaginados = computed(() => {
 
 <template>
 
-    <div class="bg-gray-100 min-h-screen py-6">
-        <div class="max-w-7xl mx-auto px-4">
+    <div class="relative min-h-screen bg-slate-50 overflow-hidden">
 
-            <!-- Título -->
-            <h1 class="text-2xl font-bold mb-6">Productos</h1>
-
-            <Buscador :modelo="busqueda" @update:modelo="(val) => { busqueda = val; pagina = 1 }" />
-
-            <FiltroCategoria :modelo="categoria" :categorias="categorias"
-                @update:modelo="(val) => { categoria = val; pagina = 1 }" />
-
-            <div v-if="cargando" class="text-center py-10">
-                Cargando productos...
-            </div>
-
-            <EstadoVacio v-else-if="productosFiltrados.length === 0" />
-
-            <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <TarjetaProducto v-for="producto in productosPaginados" :key="producto.id" :producto="producto" />
-            </div>
-
-            <div v-if="totalPaginas > 1" class="flex justify-center mt-8 gap-2">
-                <Paginacion :paginaActual="pagina" :totalPaginas="totalPaginas" @cambiarPagina="pagina = $event" />
-            </div>
-
+        <!-- Glow decorativo -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
+              bg-indigo-300 opacity-20 blur-3xl rounded-full">
         </div>
+
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] 
+              bg-purple-300 opacity-20 blur-3xl rounded-full">
+        </div>
+
+        <div class="relative z-10">
+            <div class="max-w-7xl mx-auto px-4">
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                    <div class="md:col-span-8">
+                        <Buscador :modelo="busqueda" @update:modelo="(val) => { busqueda = val; pagina = 1 }" />
+                    </div>
+                    <div class="md:col-span-4">
+                        <FiltroCategoria :modelo="categoria" :categorias="categorias"
+                            @update:modelo="(val) => { categoria = val; pagina = 1 }" />
+                    </div>
+
+
+                    <div class="md:col-span-12">
+
+                        <div v-if="cargando" class="text-center py-10">
+                            Cargando productos...
+                        </div>
+
+                        <EstadoVacio v-else-if="productosFiltrados.length === 0" />
+
+                        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
+                            <TarjetaProducto v-for="producto in productosPaginados" :key="producto.id"
+                                :producto="producto" />
+                        </div>
+
+                        <div v-if="totalPaginas > 1" class="flex justify-center mt-8 gap-2">
+                            <Paginacion :paginaActual="pagina" :totalPaginas="totalPaginas" :porPagina="porPagina"
+                                :totalResultados="totalResultados" @cambiarPagina="pagina = $event" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </template>
