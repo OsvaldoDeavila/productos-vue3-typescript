@@ -2,12 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { ObtenerProductos } from "../ObtenerProductos";
 import { ProductoApi } from "@/infrastructure/api/ProductApi";
 
+
 describe("ObtenerProductos", () => {
 
     it("debe retornar lista de productos", async () => {
 
         const apiMock = {
-            onListaProductos: vi.fn().mockResolvedValue([
+            obtenerTodos: vi.fn().mockResolvedValue([
                 {
                     id: 1,
                     titulo: "Producto test",
@@ -18,7 +19,7 @@ describe("ObtenerProductos", () => {
                     calificacion: { tasa: 4, cantidad: 10 }
                 }
             ])
-        } as unknown as ProductoApi;
+        } as any;
 
         const casoUso = new ObtenerProductos(apiMock);
 
