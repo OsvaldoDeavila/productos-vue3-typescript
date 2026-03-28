@@ -71,7 +71,6 @@ const productosPaginados = computed(() => {
 
     <div class="relative min-h-screen bg-slate-50 overflow-hidden">
 
-        <!-- Glow decorativo -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
               bg-indigo-300 opacity-20 blur-3xl rounded-full">
         </div>
@@ -102,7 +101,7 @@ const productosPaginados = computed(() => {
 
                         <EstadoVacio v-else-if="productosFiltrados.length === 0" />
 
-                        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
+                        <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                             <TarjetaProducto v-for="producto in productosPaginados" :key="producto.id"
                                 :producto="producto" />
                         </div>
