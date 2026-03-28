@@ -1,7 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
 import { ObtenerProductos } from "../ObtenerProductos";
-import { ProductoApi } from "@/infrastructure/api/ProductApi";
-
 
 describe("ObtenerProductos", () => {
 
