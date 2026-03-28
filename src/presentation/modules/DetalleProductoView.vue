@@ -27,69 +27,101 @@ function onVolver() {
 
 <template>
 
-    <button @click="onVolver" class="mb-6 flex items-center gap-2 text-indigo-600 hover:text-indigo-800 font-medium">
-        ← Volver a productos
-    </button>
+    <div class="space-y-2">
 
-    <div v-if="producto" class="md:flex items-start justify-center py-12 px-4 md:px-6 xl:px-20 bg-gray-50 min-h-screen">
+        <button @click="onVolver" class="flex items-center gap-2 text-sm text-slate-500 
+           hover:text-indigo-600 transition group mt-2">
+            <span class="transition-transform duration-200 group-hover:-translate-x-1">
+                ←
+            </span>
+            <span class="font-medium">Volver a productos</span>
+        </button>
 
-        <div class="xl:w-2/6 lg:w-2/5 w-full">
-            <img :src="producto.imagen" class="w-full object-contain rounded-lg bg-white p-4 shadow" />
-        </div>
-
-        <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 mt-6 md:mt-0">
-
-            <div class="border-b pb-6">
-                <p class="text-sm text-gray-500">{{ producto.categoria }}</p>
-                <h1 class="text-2xl font-bold text-gray-800 mt-2">
-                    {{ producto.titulo }}
-                </h1>
-            </div>
-
-            <div class="py-4 border-b">
-                <p class="text-3xl font-bold text-indigo-600">
-                    ${{ producto.precio }}
-                </p>
-            </div>
-
-            <button class="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition">
-                Comprar ahora
-            </button>
-
-            <p class="text-gray-600 mt-6 leading-relaxed">
-                {{ producto.descripcion }}
-            </p>
-
-            <p class="mt-4 text-yellow-500">
-                ⭐ {{ producto.calificacion?.tasa }} ({{ producto.calificacion?.cantidad }})
-            </p>
-
-            <div class="border-t border-b py-4 mt-7">
-                <div @click="mostrarEnvio = !mostrarEnvio" class="flex justify-between cursor-pointer">
-                    <p class="text-gray-800 font-medium">Envíos y devoluciones</p>
-                    <span :class="{ 'rotate-180': mostrarEnvio }">⌄</span>
-                </div>
-
-                <div v-if="mostrarEnvio" class="mt-4 text-gray-600">
-                    Los costos de envío no son reembolsables. El cliente asume el retorno.
-                </div>
-            </div>
-
-            <div class="border-b py-4">
-                <div @click="mostrarContacto = !mostrarContacto" class="flex justify-between cursor-pointer">
-                    <p class="text-gray-800 font-medium">Contacto</p>
-                    <span :class="{ 'rotate-180': mostrarContacto }">⌄</span>
-                </div>
-
-                <div v-if="mostrarContacto" class="mt-4 text-gray-600">
-                    Escríbenos para más información sobre este producto.
-                </div>
-            </div>
-
-        </div>
     </div>
 
-    <div v-else class="text-center py-20">
+    <div v-if="producto"
+        class="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-12 px-4 md:px-6 xl:px-20">
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex items-center justify-center">
+                <img :src="producto.imagen"
+                    class="max-h-[400px] object-contain transition-transform duration-300 hover:scale-105" />
+            </div>
+
+            <div class="space-y-6">
+
+                <div class="space-y-2">
+                    <p class="text-xs uppercase tracking-wide text-slate-400">
+                        {{ producto.categoria }}
+                    </p>
+
+                    <h1 class="text-3xl font-bold text-slate-900 leading-tight">
+                        {{ producto.titulo }}
+                    </h1>
+                </div>
+
+                <div class="flex items-center gap-2 text-sm text-slate-600">
+                    <span class="text-amber-400">★</span>
+                    <span class="font-medium text-slate-700">
+                        {{ producto.calificacion?.tasa }}
+                    </span>
+                    <span class="text-slate-400">
+                        ({{ producto.calificacion?.cantidad }} reseñas)
+                    </span>
+                </div>
+
+                <div class="text-3xl font-bold text-indigo-600">
+                    ${{ producto.precio }}
+                </div>
+
+                <button class="w-full bg-indigo-600 text-white py-3 rounded-xl 
+               hover:bg-indigo-700 active:scale-[0.99]
+               transition-all duration-200 shadow-sm">
+                    Comprar ahora
+                </button>
+
+                <p class="text-slate-600 leading-relaxed">
+                    {{ producto.descripcion }}
+                </p>
+
+                <div class="divide-y border-t border-b rounded-xl bg-white">
+
+                    <div class="p-4">
+                        <div @click="mostrarEnvio = !mostrarEnvio"
+                            class="flex justify-between items-center cursor-pointer">
+                            <p class="font-medium text-slate-800">Envíos y devoluciones</p>
+                            <span class="transition-transform" :class="{ 'rotate-180': mostrarEnvio }">⌄</span>
+                        </div>
+
+                        <div v-if="mostrarEnvio" class="mt-3 text-sm text-slate-600">
+                            Los costos de envío no son reembolsables. El cliente asume el retorno.
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <div @click="mostrarContacto = !mostrarContacto"
+                            class="flex justify-between items-center cursor-pointer">
+                            <p class="font-medium text-slate-800">Contacto</p>
+                            <span class="transition-transform" :class="{ 'rotate-180': mostrarContacto }">⌄</span>
+                        </div>
+
+                        <div v-if="mostrarContacto" class="mt-3 text-sm text-slate-600">
+                            Escríbenos para más información sobre este producto.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div v-else class="flex justify-center items-center min-h-screen text-slate-400">
         Cargando producto...
     </div>
+
 </template>
