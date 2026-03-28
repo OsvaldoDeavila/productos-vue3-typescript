@@ -40,6 +40,10 @@ Se aplicó una arquitectura basada en:
 - 📦 Uso de casos de uso (Use Cases)
 - 🧾 Tipado fuerte con TypeScript
 
+## 🧪 Testing
+
+Se implementaron pruebas unitarias para los casos de uso utilizando Vitest, asegurando el correcto funcionamiento 
+
 ## 📦 Instalación
 
 Clona el proyecto:

@@ -14,13 +14,16 @@ jobs:
       - name: 📥 Clonar repositorio
         uses: actions/checkout@v4
 
-      - name: 🟢 Instalar Node
+      - name: Instalar Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: 📦 Instalar dependencias
+      - name: Instalar dependencias
         run: npm install
 
-      - name: 🛠️ Build del proyecto
+      - name: Build del proyecto
         run: npm run build
+
+      - name: Test del proyecto
+        run: npm run test
